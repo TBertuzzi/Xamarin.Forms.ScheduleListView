@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:c="clr-namespace:SaudeNess.Converters;assembly=SaudeNess"
+             Title="Agendamentos"
+             x:Class="SaudeNess.Views.AgendamentosPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter" />
+            <c:StatusConverter x:Key="statusConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+            <ListView x:Name="lvwAgendamento" 
+            HasUnevenRows="true"
+            SeparatorVisibility="Default" 
+            ItemsSource="{Binding Agendamentos, Mode=TwoWay}"
+            CachingStrategy="RecycleElement" 
+            IsRefreshing="{Binding Atualizando}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="0" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="6" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="1" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Label cor do status-->
+                                <Label  Grid.Row="0" 
+                 Grid.Column="0" 
+                 Grid.RowSpan="3" 
+                 BackgroundColor="{Binding AgendamentoStatus, Converter={StaticResource statusConverter}}" />
+                                <!-- Label Data-->
+                                <Label Text="{Binding DataFormatada}" 
+                FontSize="16" 
+                TextColor="#2C92FD" 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Margin="0,8,0,0"/>
+                                <!-- Label Separador Linha-->
+                                <Label BackgroundColor="Silver" 
+                Margin="0,-1,0,-1" 
+                Grid.Row="1" 
+                Grid.Column="1"/>
+                                <!-- Label Separador Coluna-->
+                                <Label BackgroundColor="Silver" 
+                Grid.RowSpan="3"  
+                Text=" " 
+                Margin="0,6,0,0" 
+                Grid.Row="0" 
+                  Grid.Column="2"/>
+                                <!-- Label Hora-->
+                                <Label Text="{Binding HoraFormatada}" 
+                Grid.Row="2" 
+                TextColor="#2C92FD" 
+                FontSize="16" 
+                Grid.Column="1" 
+                Margin="0,0,0,8"/>
+                                <!-- Label Titulo Agendamento -->
+                                <Label Text="{Binding RedeCredenciada}" 
+                Margin="5,4,0,0" 
+                FontSize="15" 
+                Grid.Row="0" 
+                Grid.Column="3"/>
+                                <!-- Editor Conteudo Agendamento -->
+                                <Editor 
+               Text="{Binding EnderecoFormatado}"
+               FontSize="12" 
+               Margin="0,-15,0,4" 
+               Grid.Row="1" 
+               Grid.RowSpan="3" 
+               TextColor="#636363"
+               IsEnabled = "false"
+               Grid.Column="3"/>
+                            </Grid>
+
+
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemTapped" 
+                                          Command="{Binding ItemTappedCommand}"
+                                          EventArgsConverter="{StaticResource itemTappedEventArgsConverter}" />
+                </ListView.Behaviors>
+            </ListView>
+
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
