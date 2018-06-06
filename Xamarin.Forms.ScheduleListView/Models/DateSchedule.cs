@@ -9,6 +9,14 @@ namespace Xamarin.Forms.ScheduleListView
         public DateTime Date { get; set; }
         public string Format { get; set; }
 
+        public string FormattedDate
+        {
+            get
+            {
+                return Date.ToString(Format);
+            }
+        }
+
         public DateFormatSchedule()
         {
             Date = DateTime.Now;

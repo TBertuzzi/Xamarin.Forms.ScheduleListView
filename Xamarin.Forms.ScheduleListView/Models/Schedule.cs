@@ -14,27 +14,5 @@ namespace Xamarin.Forms.ScheduleListView
         public string Title { get; set; } = "";
         public string Description { get; set; } = "";
 
-
-        public string FormattedDate
-        {
-            get
-            {
-                if (Date == null)
-                    Date = new DateFormatSchedule();
-
-                return Date.Date.ToString(Date.Format);
-            }
-        }
-
-        public string FormattedHour
-        {
-            get
-            {
-                if (Hour == null)
-                    Hour = new DateFormatSchedule();
-
-                return Hour.Date.ToString(Date.Format);
-            }
-        }
     }
 }

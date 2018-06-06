@@ -43,7 +43,7 @@ namespace ScheduleListViewSample.ViewModel
             Schedule schedule = new Schedule
             {
                 Date = new DateFormatSchedule(DateTime.Now,"MM/dd"),
-                Hour = new DateFormatSchedule(DateTime.Now, "HH/mmm"),
+                Hour = new DateFormatSchedule(DateTime.Now, "HH:mm"),
                 Title = "Sample 1",
                 Description = "This a first sample",
                 Status = Color.Green
@@ -54,7 +54,7 @@ namespace ScheduleListViewSample.ViewModel
             Schedule schedule2 = new Schedule
             {
                 Date = new DateFormatSchedule(DateTime.Now.AddDays(1), "MM/dd"),
-                Hour = new DateFormatSchedule(DateTime.Now.AddDays(1), "HH/mmm"),
+                Hour = new DateFormatSchedule(DateTime.Now.AddDays(1), "HH:mm"),
                 Title = "Sample 2",
                 Description = "This a second sample",
                 Status = Color.Green
