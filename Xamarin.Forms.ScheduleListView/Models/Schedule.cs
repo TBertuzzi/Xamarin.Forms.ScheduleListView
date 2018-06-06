@@ -1,36 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+
 
 namespace Xamarin.Forms.ScheduleListView
 {
     public class Schedule
     {
-        public Color Status { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Hour { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public Color Status { get; set; } = Color.White;
+        public DateFormatSchedule Date { get; set; }  
+        public DateFormatSchedule Hour { get; set; }
+        public string Title { get; set; } = "";
+        public string Description { get; set; } = "";
 
-        internal string FormattedDate
+
+        public string FormattedDate
         {
             get
             {
                 if (Date == null)
-                    Date = new DateTime();
+                    Date = new DateFormatSchedule();
 
-                return Date.ToShortDateString();
+                return Date.Date.ToString(Date.Format);
             }
         }
 
-        internal string FormattedHour
+        public string FormattedHour
         {
             get
             {
-                if (Date == null)
-                    Date = new DateTime();
+                if (Hour == null)
+                    Hour = new DateFormatSchedule();
 
-                return Date.ToShortTimeString();
+                return Hour.Date.ToString(Date.Format);
             }
         }
     }

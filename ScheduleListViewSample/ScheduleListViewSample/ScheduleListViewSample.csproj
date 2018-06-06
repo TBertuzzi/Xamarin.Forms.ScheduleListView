@@ -9,9 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Controls\ScheduleViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+    <ProjectReference Include="..\..\Xamarin.Forms.ScheduleListView\Xamarin.Forms.ScheduleListView.csproj" />
   </ItemGroup>
-
 </Project>
