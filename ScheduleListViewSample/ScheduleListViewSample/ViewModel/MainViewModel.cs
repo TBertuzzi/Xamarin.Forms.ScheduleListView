@@ -45,7 +45,8 @@ namespace ScheduleListViewSample.ViewModel
                 Date = new DateFormatSchedule(DateTime.Now,"MM/dd"),
                 Hour = new DateFormatSchedule(DateTime.Now, "HH:mm"),
                 Title = "Sample 1",
-                Description = "This a first sample",
+                Description = "This a first sample. bla bla bla bla bla bla " +
+                    "bla bla bla bla,bla bla bla bla bla bla bla bla bla bla",
                 Status = Color.Green
             };
 

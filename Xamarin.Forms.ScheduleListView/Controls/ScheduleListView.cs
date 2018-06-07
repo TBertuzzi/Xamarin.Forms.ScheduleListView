@@ -15,6 +15,7 @@ namespace Xamarin.Forms.ScheduleListView
             this.ItemTemplate = new ScheduleDataTemplateSelector();
             this.HasUnevenRows = true;
             this.SeparatorVisibility = SeparatorVisibility.Default;
+
         }
     }
 }
