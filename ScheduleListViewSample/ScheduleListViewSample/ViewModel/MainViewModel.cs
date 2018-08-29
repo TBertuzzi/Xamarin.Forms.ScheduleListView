@@ -40,28 +40,47 @@ namespace ScheduleListViewSample.ViewModel
         {
             Schedules = new ObservableCollection<Schedule>();
 
+          
             Schedule schedule = new Schedule
             {
                 Date = new DateFormatSchedule(DateTime.Now,"MM/dd"),
                 Hour = new DateFormatSchedule(DateTime.Now, "HH:mm"),
                 Title = "Sample 1",
-                Description = "This a first sample. bla bla bla bla bla bla " +
+                Description = "This a 1 sample. bla bla bla bla bla bla " +
                     "bla bla bla bla,bla bla bla bla bla bla bla bla bla bla",
                 Status = Color.Green
             };
 
             Schedules.Add(schedule);
 
-            Schedule schedule2 = new Schedule
+            schedule  = new Schedule
             {
                 Date = new DateFormatSchedule(DateTime.Now.AddDays(1), "MM/dd"),
                 Hour = new DateFormatSchedule(DateTime.Now.AddDays(1), "HH:mm"),
                 Title = "Sample 2",
-                Description = "This a second sample",
+                Description = "This a 2 sample",
                 Status = Color.Green
             };
 
-            Schedules.Add(schedule2);
+            Schedules.Add(schedule);
+
+            int max = 30;
+            for (int i = 3; i < max; i++)
+            {
+                schedule = new Schedule
+                {
+                    Date = new DateFormatSchedule(DateTime.Now.AddDays(i), "MM/dd"),
+                    Hour = new DateFormatSchedule(DateTime.Now.AddDays(i), "HH:mm"),
+                    Title = $"Sample {i}",
+                    Description = $"This a {i} sample",
+                    Status = i % 2 == 0 ? Color.Green : Color.Red
+                };
+
+                Schedules.Add(schedule);
+            }
+
+
+           
 
 
         }
