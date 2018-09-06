@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using PaginaIIntroducaoExemplo.Model;
+using System.Text;
+using Xamarin.Forms;
+using Xamarin.Forms.ScheduleListView;
 
-namespace PaginaIIntroducaoExemplo.ViewModel
+namespace ScheduleListViewSample.ViewModel
 {
-    public class MainViewModel : INotifyPropertyChanged
+   public class MainViewModel : INotifyPropertyChanged
     {
         #region Property
 
@@ -32,52 +34,53 @@ namespace PaginaIIntroducaoExemplo.ViewModel
 
         #endregion
 
-        public ObservableCollection<CarouselItem> Itens { get; }
-
-        private int _position;
-        public int Position
-        {
-            get { return _position; }
-            set { SetProperty(ref _position, value); }
-        }
+         public ObservableCollection<Schedule> Schedules { get;}
 
         public MainViewModel()
         {
-            CarouselItem item = new CarouselItem
+            Schedules = new ObservableCollection<Schedule>();
+
+          
+            Schedule schedule = new Schedule
             {
-                Titulo = "Bem vindo",
-                Detalhe = "Aqui temos diversos médicos a disposição",
-                Imagem = "onboarding-bg-01.png"
+                Date = new DateFormatSchedule(DateTime.Now,"MM/dd"),
+                Hour = new DateFormatSchedule(DateTime.Now, "HH:mm"),
+                Title = "Sample 1",
+                Description = "This a 1 sample. bla bla bla bla bla bla " +
+                    "bla bla bla bla,bla bla bla bla bla bla bla bla bla bla",
+                Status = Color.Green
             };
 
-            Itens.Add(item);
+            Schedules.Add(schedule);
 
-            item = new CarouselItem
+            schedule  = new Schedule
             {
-                Titulo = "Gaste seu dinheiro",
-                Detalhe = "Contratando eles eu ficarei muito rico",
-                Imagem = "onboarding-bg-02.png"
+                Date = new DateFormatSchedule(DateTime.Now.AddDays(1), "MM/dd"),
+                Hour = new DateFormatSchedule(DateTime.Now.AddDays(1), "HH:mm"),
+                Title = "Sample 2",
+                Description = "This a 2 sample",
+                Status = Color.Green
             };
 
-            Itens.Add(item);
+            Schedules.Add(schedule);
 
-            item = new CarouselItem
+            int max = 30;
+            for (int i = 3; i < max; i++)
             {
-                Titulo = "Sua saude não é importante",
-                Detalhe = "Coma mais bacon meu amigo, é vida!",
-                Imagem = "onboarding-bg-03.png"
-            };
+                schedule = new Schedule
+                {
+                    Date = new DateFormatSchedule(DateTime.Now.AddDays(i), "MM/dd"),
+                    Hour = new DateFormatSchedule(DateTime.Now.AddDays(i), "HH:mm"),
+                    Title = $"Sample {i}",
+                    Description = $"This a {i} sample",
+                    Status = i % 2 == 0 ? Color.Green : Color.Red
+                };
 
-            Itens.Add(item);
+                Schedules.Add(schedule);
+            }
 
-            item = new CarouselItem
-            {
-                Titulo = "Crossfit raiz é pedreiro",
-                Detalhe = "É como diz o titulo :P",
-                Imagem = "onboarding-bg-04.png"
-            };
 
-            Itens.Add(item);
+           
 
 
         }
